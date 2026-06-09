@@ -1,0 +1,155 @@
+# =============================================================================
+# PhishAid — monorepo .gitignore
+# Covers: client (Office.js/Node), backend (Spring Boot/Maven),
+#         dashboard (React/Vite), Nginx, DB, Docker, IDE, OS
+# =============================================================================
+
+
+# -----------------------------------------------------------------------------
+# Secrets and environment — never commit populated values
+# -----------------------------------------------------------------------------
+.env
+.env.local
+.env.*.local
+
+# Spring Boot local/secret overrides — put machine-specific or secret config here
+# and reference it with spring.profiles.include=local in application.yml
+**/application-local.yml
+**/application-local.properties
+**/application-secrets.yml
+**/application-secrets.properties
+
+
+# -----------------------------------------------------------------------------
+# TLS certificates, keys, keystores
+# The Office.js dev server generates self-signed certs; the backend may use
+# a keystore for mutual TLS. None of these belong in version control.
+# -----------------------------------------------------------------------------
+*.pem
+*.key
+*.crt
+*.cer
+*.pfx
+*.p12
+*.jks
+*.keystore
+*.truststore
+.certs/
+certs/
+
+
+# -----------------------------------------------------------------------------
+# Node / npm — client (Office.js add-in) and dashboard (React/Vite)
+# -----------------------------------------------------------------------------
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+package-lock.json         # optional: remove this line if you want to pin deps with lockfile
+yarn.lock                 # keep one or the other depending on your package manager
+
+# Build output
+client/dist/
+client/build/
+dashboard/dist/
+dashboard/build/
+
+# Office Yeoman / webpack cache
+client/.cache/
+client/tmp/
+
+# Vite cache
+dashboard/.vite/
+
+
+# -----------------------------------------------------------------------------
+# Java / Maven — backend (Spring Boot)
+# -----------------------------------------------------------------------------
+backend/target/
+backend/*.class
+backend/*.jar
+backend/*.war
+
+# Maven wrapper (keep the wrapper itself; omit the downloaded binary cache)
+.mvn/repository/
+
+# Compiled test reports
+backend/surefire-reports/
+
+
+# -----------------------------------------------------------------------------
+# Docker
+# docker-compose.yml and Dockerfile are committed.
+# Override files are local-only (port remapping, volume tweaks, etc.).
+# -----------------------------------------------------------------------------
+docker-compose.override.yml
+docker-compose.local.yml
+
+# Named volume data if ever mounted locally
+data/
+pgdata/
+
+
+# -----------------------------------------------------------------------------
+# Jenkins / CI
+# Jenkinsfile is committed. Credentials live in Jenkins; never in files.
+# -----------------------------------------------------------------------------
+.scannerwork/             # SonarQube scanner working directory
+
+
+# -----------------------------------------------------------------------------
+# IDE
+# -----------------------------------------------------------------------------
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# VS Code — commit .vscode/extensions.json and .vscode/settings.json only if
+# they are project-wide and contain no personal paths or secrets.
+# Safest default is to ignore the whole directory.
+.vscode/
+
+# Eclipse / STS
+.classpath
+.project
+.settings/
+bin/
+
+
+# -----------------------------------------------------------------------------
+# OS
+# -----------------------------------------------------------------------------
+.DS_Store
+.DS_Store?
+._*
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+
+# -----------------------------------------------------------------------------
+# Logs
+# -----------------------------------------------------------------------------
+*.log
+logs/
+log/
+
+
+# -----------------------------------------------------------------------------
+# Miscellaneous
+# -----------------------------------------------------------------------------
+tmp/
+temp/
+.tmp/
+
+# Crash reports
+crash-reports/
+hs_err_pid*.log
+
+
+CLAUDE.md

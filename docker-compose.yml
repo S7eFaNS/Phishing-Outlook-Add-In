@@ -1,0 +1,16 @@
+services:
+
+  client:
+    build: ./client
+    container_name: phishaid-client
+    ports:
+      - "3100:3100"
+    environment:
+      HTTPS_CA: /certs/ca.crt
+      HTTPS_CERT: /certs/localhost.crt
+      HTTPS_KEY: /certs/localhost.key
+      WATCHPACK_POLLING: "true"
+    volumes:
+      - ./client:/app
+      - /app/node_modules
+      - ${USERPROFILE}/.office-addin-dev-certs:/certs:ro
