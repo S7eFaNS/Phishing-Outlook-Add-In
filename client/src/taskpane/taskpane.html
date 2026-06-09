@@ -1,0 +1,52 @@
+<!-- Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License. -->
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PhishAid</title>
+
+    <script type="text/javascript" src="https://appsforoffice.microsoft.com/lib/1/hosted/office.js"></script>
+
+    <link rel="stylesheet" href="https://res-1.cdn.office.net/files/fabric-cdn-prod_20230815.002/office-ui-fabric-core/11.1.0/css/fabric.min.css"/>
+
+    <link href="taskpane.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body class="ms-font-m ms-welcome ms-Fabric">
+    <header class="ms-welcome__header ms-bgColor-neutralLighter">
+        <img width="90" height="90" src="../../assets/logo-filled.png" alt="PhishAid" title="PhishAid" />
+        <h1 class="ms-font-su">PhishAid</h1>
+    </header>
+
+    <section id="sideload-msg" class="ms-welcome__main">
+        <h2 class="ms-font-xl">Please <a target="_blank" href="https://learn.microsoft.com/office/dev/add-ins/testing/test-debug-office-add-ins#sideload-an-office-add-in-for-testing">sideload</a> your add-in to see the app body.</h2>
+    </section>
+
+    <main id="app-body" class="ms-welcome__main" style="display: none;">
+        <p class="ms-font-m">Open the forwarded carrier email, then analyze the attached suspicious email.</p>
+
+        <div role="button" id="analyze" class="ms-welcome__action ms-Button ms-Button--hero ms-font-xl" tabindex="0">
+            <span class="ms-Button-label">Analyze forwarded email</span>
+        </div>
+
+        <p id="status" class="ms-font-m"></p>
+
+        <div id="error" class="ms-fontColor-redDark ms-font-m" role="alert" style="display: none; width: 100%; white-space: pre-wrap;"></div>
+
+        <section id="result" style="display: none; width: 100%;">
+            <p class="ms-font-m"><b>Attachment analyzed:</b> <span id="attachment-name"></span></p>
+
+            <p class="ms-font-m"><b>SHA-256 (hash ID):</b></p>
+            <code id="hash" class="ms-font-s" style="display: block; width: 100%; box-sizing: border-box; word-break: break-all;"></code>
+
+            <p class="ms-font-m"><b>Raw .eml preview (first 1000 chars):</b></p>
+            <pre id="raw-preview" class="ms-font-s" style="width: 100%; box-sizing: border-box; white-space: pre-wrap; word-break: break-word; max-height: 320px; overflow: auto; background: #f3f2f1; padding: 8px;"></pre>
+        </section>
+    </main>
+</body>
+
+</html>
