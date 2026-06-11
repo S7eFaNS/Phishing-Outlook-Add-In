@@ -14,3 +14,18 @@ services:
       - ./client:/app
       - /app/node_modules
       - ${USERPROFILE}/.office-addin-dev-certs:/certs:ro
+  db:
+    image: postgres:17
+    container_name: phishaid-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: phishaid
+      POSTGRES_USER: phishaid
+      POSTGRES_PASSWORD: phishaid
+    volumes:
+      - phishaid_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+volumes:
+  phishaid_db_data:

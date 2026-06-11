@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: phishaid
+  datasource:
+    url: jdbc:postgresql://localhost:5432/phishaid
+    username: phishaid
+    password: phishaid
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+    show-sql: true
