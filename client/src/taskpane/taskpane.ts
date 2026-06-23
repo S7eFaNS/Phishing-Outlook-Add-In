@@ -2,6 +2,7 @@
 
 import { extractPhishingEmail } from "../extract/phishingEmail";
 import { buildPayload } from "../assemble";
+import { sendToBackend } from "../send";
 
 const PREVIEW_LIMIT = 1000;
 
@@ -75,7 +76,10 @@ async function analyze(): Promise<void> {
       : payload.rawEmail;
 
     el("result").style.display = "block";
-    setStatus("");
+
+    setStatus("Sending report to the backend…");
+    await sendToBackend(payload);
+    setStatus("✓ Report sent — the backend accepted it.");
   } catch (err) {
     setStatus("");
     showError(err instanceof Error ? err.message : String(err));

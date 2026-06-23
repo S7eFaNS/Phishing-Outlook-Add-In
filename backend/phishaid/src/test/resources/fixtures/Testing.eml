@@ -1,0 +1,107 @@
+Delivered-To: stefannikola298@gmail.com
+Received: by 2002:a05:6a11:d046:b0:6fa:2c44:be9e with SMTP id nu6csp2408246pxc;
+        Tue, 9 Jun 2026 07:27:49 -0700 (PDT)
+X-Received: by 2002:a05:7022:42b:b0:123:34e8:aec2 with SMTP id a92af1059eb24-1380666a2e0mr10095991c88.1.1781015268993;
+        Tue, 09 Jun 2026 07:27:48 -0700 (PDT)
+ARC-Seal: i=2; a=rsa-sha256; t=1781015268; cv=pass;
+        d=google.com; s=arc-20240605;
+        b=aMySLA+YlAvXsZH16oEKiJ8KMJm/m+8V1vS47JipjawO7eaOHOBCeCdD6aASqRrJ+z
+         4t5lohqvzMw9TJnraWs74TPavrdoHN4U2SxQcQ/pk7ikP518rilKmUntQtNQ1vDg/wiG
+         how2rB1c34Hx2bkYJq79DSEI7nkcWdljlGnw1In7s8Smcq6tkemIasVYoQ/ezU2z/6Jy
+         G5oyxHBksHT4WZebonUCAkinyYogNEschY7lapWsfp7yBPU3BcB3Q0Rq6sOco7zfLvcl
+         dO91SZGHOavsRWHiVOC6HV7FrE/+f14cn8q/fjTCJ8PECg9OWuBLVZ40FAjaev5TXCGS
+         LfWw==
+ARC-Message-Signature: i=2; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=eSPKSAjevyA4PmKo2P9NQPf+2RpgpDcTwXXoJQi1yV0=;
+        fh=jgrB4H91Qq+WY2jj1sJ2FlSS8pBd//3IDiHRGHwmTJw=;
+        b=i3OR0sGcUTNYCl0lvcYqwjDYfuxT8nvOk0+N18s63T+mKDqGKapLAXiY41st8mGKSL
+         L1O2OCJxfnpnbgkbm0FLFtvBTcKeKOAI5LO6Gfux5tblDXINg8nt+VpnRBdeSMWD4oeP
+         vwolNgH8dKIXKiEz9SjhVf6vdqOJ3jLrlvEIXfNsT/mdjRsFscWmlcQik1FKR8z9yeGq
+         CIbsaqipRlwnPV4LUVitW4537z/4nPiKO0sZebrFNJcAkuUiErB1svRWFVT4PSrzgo+O
+         W85eA5DmVzrGxLnrpUdbmz4ZP3cACG4VCM3WsA0ElKGL9JnT6hoQrdCLJ4uvz2r/29lL
+         hSrA==;
+        dara=google.com
+ARC-Authentication-Results: i=2; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20251104 header.b=IsM0+Ith;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of stefannikola288@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=stefannikola288@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+Return-Path: <stefannikola288@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id a92af1059eb24-137ffbfce79sor4210718c88.1.2026.06.09.07.27.48
+        for <stefannikola298@gmail.com>
+        (Google Transport Security);
+        Tue, 09 Jun 2026 07:27:48 -0700 (PDT)
+Received-SPF: pass (google.com: domain of stefannikola288@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20251104 header.b=IsM0+Ith;
+       arc=pass (i=1);
+       spf=pass (google.com: domain of stefannikola288@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=stefannikola288@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com;
+       dara=pass header.i=@gmail.com
+ARC-Seal: i=1; a=rsa-sha256; t=1781015268; cv=none;
+        d=google.com; s=arc-20240605;
+        b=LODFJ+6FKvsSDcevE2mMrECvAnEDxvJpFES9GZBXaqaf9d6HZg7CviNiZ0eUY6Bj+c
+         ST2ukYeCMSucz0O126L4NPrmIFAhelJvDKvOd9aniiLQ5rc/XExqYqSS192X7RvKQaDh
+         9kodCrDUxOnDQ5TwzCeDPXtC2CbvnK5+ooPsupTnfg21F2FLf2tKy7gnz+LieCwXRSiG
+         uAHtxqg1bpAq5CmOxTbeqkqVpobwkqE+sZXvPzWmJdEDDbe2j2s37Lh1IBJn+MsU0fY7
+         jdBBsyo6J5bch77HYfFa0rhWFUHD0CqT1So2c3TMUd6L7LQtxsvgCkygy/UOFeSci3uA
+         Fglg==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=eSPKSAjevyA4PmKo2P9NQPf+2RpgpDcTwXXoJQi1yV0=;
+        fh=jgrB4H91Qq+WY2jj1sJ2FlSS8pBd//3IDiHRGHwmTJw=;
+        b=jdfG7LXCKiEKGY7hSZM9BG8wDdpD/qKK6jRMNcyHPmxzdZ9xN31pfKOIRRvgqPo8Y9
+         XDTXuFZD9FZRszDfy/tZqNJ6HMlt5bv5Hd6QQhUdSUSYOVrqfCtdtJlR3LFtZTj57R1v
+         RBPz1CFTA5OHiArIEJJIAokgxFY9QCwjfNz8oT9TODjuqzDNtGJvyQLUc8gI6Ek802sq
+         BxJCgyJ0M40Rnq/NXJL/SMJNPOmP3RZ8E3YCrO62SaS/9RS40uOhDL2I8Yo+Cs4Z5wcB
+         kL70+87oqG8vMdP+ZcxrziUR6AOVaExhoSOS67pV610E/WysR/1+n19xj4fIdtxyjZc7
+         9XYg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com; arc=none
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20251104; t=1781015268; x=1781620068; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=eSPKSAjevyA4PmKo2P9NQPf+2RpgpDcTwXXoJQi1yV0=;
+        b=IsM0+IthM4+pA7dmTHkgiJ+8fBu62IJCcd/MGQKgzVN0Qt3OXnvtVd/8McOYQ08YV3
+         RFZDcAjyg/vtWaWBGLPTMjMz2RqyVkmFOHIiK6ZP2UCQ7mYxAKSmSqPheBCeykoEI3B0
+         Fv3CydF2rMg1urainc2YhsWlprVy8OXxwqgWN+RUWhfk6RDAWvrzrDZv0dt/11UxXDUG
+         mX8lhraOxtgWMO7n3znMggeIA4QKRfnWXKmYBIrUOZsmNdspmV0y0oYRkFtYHwpAdy9J
+         RCEru1PTtNZylppZmJwxp/plDeW35EM26+zokNgGvVkkr2FPiP3EvQYK+N89xysfmxmd
+         osjQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20251104; t=1781015268; x=1781620068;
+        h=to:subject:message-id:date:from:mime-version:x-gm-gg
+         :x-gm-message-state:from:to:cc:subject:date:message-id:reply-to;
+        bh=eSPKSAjevyA4PmKo2P9NQPf+2RpgpDcTwXXoJQi1yV0=;
+        b=JeEE58eS9o2VH5gDKOuYypwGJp5MSsl5yujmUuWPfZn9HX3Yb+jwgu4SbmBq0lKrNG
+         6b5tzyrT8uIboWT1wnVKrhLkN7339MAK1YRHamUkIuz8rgKfh92g5cqlxHyeSFPpOdur
+         WIlqbkTfR2UWKJRc9h9opUOaD3JNcDC3pBEYYSAyq3q52OH8TYAQW2VIjW+UdLkyElNO
+         dBpxG0SGk5MwOdryPlYW+onv+ocyWEWoWNs4tFokPV5WhE7Y5FXhAmhUiqOu7dZ8swRj
+         PHXlT6vPmrsYVrstUkb4Xfh1vbi7xsWE+FnGhu3WAjsVzGTq13X6NPGIPPKt4Fqd/r7Y
+         C/zA==
+X-Gm-Message-State: AOJu0YzKGIY31fgL77sDSKURNYCa3ug92vfqfgxwfBuQ/WRvQvrNELY3
+	aITYrbDphsF/YMortDmMhGtQkJYEfOSTUCEZkyqJYpAyQkSCHbKPg/qk2PBgWHh7AkJjMw7lEyZ
+	rBeX7XGYcGTHsf/SVNhYqkU88jEs8XRh0nQ==
+X-Gm-Gg: Acq92OGT4Ipf79c3ay255UJHNPk7sipulYQv1mVYcZaPLkBr24ol9KtxVZsHxHNFMs4
+	NKcN5p5fPqeudvHxqWfpdKifoWfUs5p6wVFlXTU5QJlHpaxIBZYlNm+AhSmkI/oUPGkniUG2mG2
+	a9LZjevZiXvWJy4w8lXvdbj+jVowuW/B1QKbSuyGVIr+K39eRvCzFFTv1aOnMItjopcmkU+LWmr
+	KByN/wcQ/oHKCUj9qQlU9Ff4I6jR2K0PqPDamSD2iDZN2hAeHqZL69VQ7zwgIdBUonVG3nsexbd
+	CAiObnBvHa2fckxVcKaUSD/yuHf4KWxRHot1FlbxufvQf8Af0qe0vEYxv1k4JJqQbTDlRXy7dXQ
+	KUkMnaUU=
+X-Received: by 2002:a05:7022:ec3:b0:138:498:895a with SMTP id
+ a92af1059eb24-1380674608fmr4495579c88.4.1781015268446; Tue, 09 Jun 2026
+ 07:27:48 -0700 (PDT)
+From: Stefan Galinov <stefannikola288@gmail.com>
+Date: Tue, 9 Jun 2026 17:27:30 +0300
+X-Gm-Features: AVVi8CexAVvBgZS2sHI_EbtSblJIWmE7-hkFV-57HYn3FCx3YlfAv3nDqdpyj2s
+Message-ID: <CAKOjR0gh2gbP20wrMmnbWdsqtcC5tQu8KJgZDHKoqO3v_QnNSg@mail.gmail.com>
+Subject: Testing
+To: stefannikola298@gmail.com
+Content-Type: text/plain; charset="UTF-8"
+MIME-Version: 1.0
+
+test features

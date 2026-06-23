@@ -14,3 +14,33 @@ services:
       - ./client:/app
       - /app/node_modules
       - ${USERPROFILE}/.office-addin-dev-certs:/certs:ro
+  db:
+    image: postgres:17
+    container_name: phishaid-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: phishaid
+      POSTGRES_USER: phishaid
+      POSTGRES_PASSWORD: phishaid
+    volumes:
+      - phishaid_db_data:/var/lib/postgresql/data
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ./backend/phishaid
+      dockerfile: Dockerfile
+    container_name: phishaid-backend
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/phishaid
+      SPRING_DATASOURCE_USERNAME: phishaid
+      SPRING_DATASOURCE_PASSWORD: phishaid
+    ports:
+      - "8080:8080"
+    restart: on-failure
+
+volumes:
+  phishaid_db_data:

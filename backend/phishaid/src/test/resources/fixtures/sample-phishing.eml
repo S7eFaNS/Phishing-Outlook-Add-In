@@ -1,0 +1,38 @@
+From: "PayPal Service" <service@paypal-secure-verify.com>
+To: victim@unicreditbulbank.bg
+Subject: =?UTF-8?B?VXJnZW50OiBWZXJpZnkgWW91ciBBY2NvdW50?=
+Reply-To: <noreply@paypal-secure-verify.com>
+Return-Path: <bounce@paypal-secure-verify.com>
+Date: Mon, 16 Jun 2025 08:15:23 +0000
+Authentication-Results: mx.unicreditbulbank.bg; spf=fail smtp.mailfrom=paypal-secure-verify.com; dkim=fail header.d=paypal-secure-verify.com; dmarc=fail (p=REJECT) header.from=paypal-secure-verify.com
+Received: from mx.unicreditbulbank.bg (mx.unicreditbulbank.bg [10.10.10.5]) by internal.unicreditbulbank.bg with ESMTP id abc123; Mon, 16 Jun 2025 08:15:25 +0000
+Received: from relay1.spamhouse.net (relay1.spamhouse.net [203.0.113.45]) by mx.unicreditbulbank.bg with ESMTP id def456; Mon, 16 Jun 2025 08:15:24 +0000
+Received: from attacker-host.example (attacker-host.example [198.51.100.23]) by relay1.spamhouse.net with SMTP id ghi789; Mon, 16 Jun 2025 08:15:20 +0000
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="OUTER-BOUNDARY"
+
+--OUTER-BOUNDARY
+Content-Type: multipart/alternative; boundary="INNER-BOUNDARY"
+
+--INNER-BOUNDARY
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+Please verify your account at http://paypal-secure-verify.com/login
+
+--INNER-BOUNDARY
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: 7bit
+
+<html><body>Click <a href="http://paypal-secure-verify.com/login">here</a></body></html>
+
+--INNER-BOUNDARY--
+
+--OUTER-BOUNDARY
+Content-Type: application/pdf; name="invoice.pdf"
+Content-Disposition: attachment; filename="invoice.pdf"
+Content-Transfer-Encoding: base64
+
+RkFLRS1QREYtQ09OVEVOVC1GT1ItVU5JVC1URVNU
+
+--OUTER-BOUNDARY--
