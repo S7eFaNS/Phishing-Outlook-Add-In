@@ -27,5 +27,20 @@ services:
       - phishaid_db_data:/var/lib/postgresql/data
     restart: unless-stopped
 
+  backend:
+    build:
+      context: ./backend/phishaid
+      dockerfile: Dockerfile
+    container_name: phishaid-backend
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/phishaid
+      SPRING_DATASOURCE_USERNAME: phishaid
+      SPRING_DATASOURCE_PASSWORD: phishaid
+    ports:
+      - "8080:8080"
+    restart: on-failure
+
 volumes:
   phishaid_db_data:
