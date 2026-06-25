@@ -38,6 +38,7 @@ services:
       SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/phishaid
       SPRING_DATASOURCE_USERNAME: phishaid
       SPRING_DATASOURCE_PASSWORD: phishaid
+      VT_API_KEY: ${VT_API_KEY:-}
     ports:
       - "8080:8080"
     restart: on-failure
