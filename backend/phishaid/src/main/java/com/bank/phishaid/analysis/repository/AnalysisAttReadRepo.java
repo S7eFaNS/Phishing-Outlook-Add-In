@@ -2,13 +2,14 @@ package com.bank.phishaid.analysis.repository;
 
 import com.bank.phishaid.analysis.repository.interfaces.IAnalysisAttReadRepo;
 import com.bank.phishaid.analysis.repository.jpaInterfaces.AttachmentRLReadJpaRepo;
+import com.bank.phishaid.initialization.entity.AttachmentLst;
 
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.UUID;
 
-//wrapper — read-only 
+//wrapper — read-only
 
 @Repository
 class AnalysisAttReadRepo implements IAnalysisAttReadRepo {
@@ -20,7 +21,7 @@ class AnalysisAttReadRepo implements IAnalysisAttReadRepo {
     }
 
     @Override
-    public List<String> findAttNames(UUID phMailId) {
+    public List<AttachmentLst> findAttNames(UUID phMailId) {
         return jpa.findAttNamesByPhMailId(phMailId);
     }
 }

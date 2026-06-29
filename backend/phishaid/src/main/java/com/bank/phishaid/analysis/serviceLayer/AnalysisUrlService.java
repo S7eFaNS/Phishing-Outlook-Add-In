@@ -8,6 +8,7 @@ import com.bank.phishaid.analysis.repository.interfaces.IAnalysisUrlReadRepo;
 import com.bank.phishaid.analysis.repository.interfaces.IUrlScoreRepo;
 import com.bank.phishaid.analysis.serviceLayer.interfaces.IAnalysisUrlService;
 import com.bank.phishaid.analysis.serviceLayer.interfaces.IUrlAndAttachmentChecker;
+import com.bank.phishaid.initialization.entity.LinkLst;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -40,14 +41,14 @@ class AnalysisUrlService implements IAnalysisUrlService {
 
     @Override
     public ScanResult AnalyseUrls(UUID phMailId, UUID analysRsltId) {
-        List<String> urls = readRepo.findUrls(phMailId);
+        List<LinkLst> urls = readRepo.findUrls(phMailId);
 
         Set<Indicator> fired = EnumSet.noneOf(Indicator.class);
-        List<Integer> scores = new ArrayList<>(urls.size());
+        List<LinkScoreLst> rows = new ArrayList<>(urls.size());
         int maliciousCount = 0;
         int skipped = 0;
-        for (String url : urls) {
-            Verdict verdict = checker.UrlCheck(url);
+        for (LinkLst url : urls) {
+            Verdict verdict = checker.UrlCheck(url.getLinkUrl());
             if (!verdict.available()) {
                 skipped++;
             }
@@ -59,13 +60,14 @@ class AnalysisUrlService implements IAnalysisUrlService {
             int linkScore = malicious
                     ? threatScorer.score(EnumSet.of(Indicator.MALICIOUS_URL)).score()
                     : 0;
-            scores.add(linkScore);
+            LinkScoreLst row = new LinkScoreLst();
+            row.setLinkScore(linkScore);
+            row.setLinkLst(url); 
+            rows.add(row);
         }
 
         // Persist one row + junction per URL occurrence.
-        for (Integer linkScore : scores) {
-            LinkScoreLst row = new LinkScoreLst();
-            row.setLinkScore(linkScore);
+        for (LinkScoreLst row : rows) {
             LinkScoreLst saved = urlScoreRepo.Create(row);
             urlScoreRepo.CreateJunctionColumn(analysRsltId, saved);
         }

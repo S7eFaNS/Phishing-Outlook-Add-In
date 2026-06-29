@@ -8,6 +8,7 @@ import com.bank.phishaid.analysis.repository.interfaces.IAnalysisAttReadRepo;
 import com.bank.phishaid.analysis.repository.interfaces.IAttScoreRepo;
 import com.bank.phishaid.analysis.serviceLayer.interfaces.IAnalysisAttService;
 import com.bank.phishaid.analysis.serviceLayer.interfaces.IUrlAndAttachmentChecker;
+import com.bank.phishaid.initialization.entity.AttachmentLst;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,9 +20,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.UUID;
 
-// §5.2 step 4. NOT @Transactional on purpose: VirusTotal I/O must not run inside an open DB
-// transaction (§7), so we read the hashes, gather every verdict with no transaction held, then
-// persist. The repo writes carry their own transactions.
 @Service
 class AnalysisAttService implements IAnalysisAttService {
 
@@ -31,8 +29,7 @@ class AnalysisAttService implements IAnalysisAttService {
     private final IAttScoreRepo attScoreRepo;
     private final IUrlAndAttachmentChecker checker;
 
-    // Stateless scorer; the §10 listing is un-annotated. Revisit when the orchestrator is wired
-    // so header/url/att can share one instance.
+
     private final ThreatScorer threatScorer = new ThreatScorer();
 
     AnalysisAttService(IAnalysisAttReadRepo readRepo, IAttScoreRepo attScoreRepo,
@@ -44,14 +41,14 @@ class AnalysisAttService implements IAnalysisAttService {
 
     @Override
     public ScanResult AnalyseAtt(UUID phMailId, UUID analysRsltId) {
-        List<String> hashes = readRepo.findAttNames(phMailId);
+        List<AttachmentLst> attachments = readRepo.findAttNames(phMailId);
 
         Set<Indicator> fired = EnumSet.noneOf(Indicator.class);
-        List<Integer> scores = new ArrayList<>(hashes.size());
+        List<AttScoreLst> rows = new ArrayList<>(attachments.size());
         int maliciousCount = 0;
         int skipped = 0;
-        for (String hash : hashes) {
-            Verdict verdict = checker.AttCheck(hash);
+        for (AttachmentLst attachment : attachments) {
+            Verdict verdict = checker.AttCheck(attachment.getAttName());
             if (!verdict.available()) {
                 skipped++;
             }
@@ -63,19 +60,20 @@ class AnalysisAttService implements IAnalysisAttService {
             int attScore = malicious
                     ? threatScorer.score(EnumSet.of(Indicator.MALICIOUS_ATTACHMENT)).score()
                     : 0;
-            scores.add(attScore);
+            AttScoreLst row = new AttScoreLst();
+            row.setAttScore(attScore);
+            row.setAttLst(attachment); 
+            rows.add(row);
         }
 
         // Persist one row + junction per attachment occurrence.
-        for (Integer attScore : scores) {
-            AttScoreLst row = new AttScoreLst();
-            row.setAttScore(attScore);
+        for (AttScoreLst row : rows) {
             AttScoreLst saved = attScoreRepo.Create(row);
             attScoreRepo.CreateJunctionColumn(analysRsltId, saved);
         }
 
         log.info("Attachment analysis for phMail {}: {} attachment(s) examined, {} malicious, {} skipped (VT unavailable)",
-                phMailId, hashes.size(), maliciousCount, skipped);
+                phMailId, attachments.size(), maliciousCount, skipped);
         return new ScanResult(fired, skipped == 0);
     }
 }

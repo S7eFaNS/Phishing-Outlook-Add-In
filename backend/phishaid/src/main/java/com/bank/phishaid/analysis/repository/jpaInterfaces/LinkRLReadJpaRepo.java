@@ -1,5 +1,6 @@
 package com.bank.phishaid.analysis.repository.jpaInterfaces;
 
+import com.bank.phishaid.initialization.entity.LinkLst;
 import com.bank.phishaid.initialization.entity.LinkRL;
 
 import org.springframework.data.jpa.repository.Query;
@@ -9,9 +10,10 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 import java.util.UUID;
 
-// Read-only 
+// Read-only
 public interface LinkRLReadJpaRepo extends JpaRepository<LinkRL, UUID> {
 
-    @Query("select rl.linkLst.linkUrl from LinkRL rl where rl.phMail.phMailId = :phMailId")
-    List<String> findUrlsByPhMailId(@Param("phMailId") UUID phMailId);
+    // Returns the linkLst rows (id + url) so the analysis can score each and FK back to it (R6).
+    @Query("select rl.linkLst from LinkRL rl where rl.phMail.phMailId = :phMailId")
+    List<LinkLst> findUrlsByPhMailId(@Param("phMailId") UUID phMailId);
 }
