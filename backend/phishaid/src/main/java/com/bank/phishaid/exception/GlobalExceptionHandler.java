@@ -8,6 +8,8 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.util.NoSuchElementException;
+
 
 @RestControllerAdvice
 class GlobalExceptionHandler {
@@ -28,6 +30,12 @@ class GlobalExceptionHandler {
     @ExceptionHandler(EmailParseException.class)
     ProblemDetail handleParse(EmailParseException ex) {
         return ProblemDetail.forStatusAndDetail(HttpStatus.BAD_REQUEST, "rawEmail could not be parsed");
+    }
+
+    // unknown id on a dashboard /{id} lookup -> 404
+    @ExceptionHandler(NoSuchElementException.class)
+    ProblemDetail handleNotFound(NoSuchElementException ex) {
+        return ProblemDetail.forStatusAndDetail(HttpStatus.NOT_FOUND, ex.getMessage());
     }
 
     //retry logic due to bad arguments
