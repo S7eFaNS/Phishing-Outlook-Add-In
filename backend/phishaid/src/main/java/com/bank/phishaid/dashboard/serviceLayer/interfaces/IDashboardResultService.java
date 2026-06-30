@@ -1,5 +1,6 @@
 package com.bank.phishaid.dashboard.serviceLayer.interfaces;
 
+import com.bank.phishaid.dashboard.dto.BreakdownDto;
 import com.bank.phishaid.dashboard.dto.ResultDto;
 
 import org.springframework.data.domain.Page;
@@ -12,4 +13,8 @@ public interface IDashboardResultService {
     Page<ResultDto> getAllResults(Pageable pageable);
 
     ResultDto getResultById(UUID analysRsltId);
+
+    ResultDto getResultByEmailId(UUID phMailId);
+
+    BreakdownDto getBreakdown(UUID analysRsltId);
 }

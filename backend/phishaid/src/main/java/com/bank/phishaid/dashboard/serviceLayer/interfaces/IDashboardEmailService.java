@@ -1,5 +1,6 @@
 package com.bank.phishaid.dashboard.serviceLayer.interfaces;
 
+import com.bank.phishaid.dashboard.dto.EmailDetailDto;
 import com.bank.phishaid.dashboard.dto.EmailDto;
 
 import org.springframework.data.domain.Page;
@@ -12,4 +13,6 @@ public interface IDashboardEmailService {
     Page<EmailDto> getAllEmails(Pageable pageable);
 
     EmailDto getEmailById(UUID phMailId);
+
+    EmailDetailDto getEmailDetail(UUID phMailId);
 }
