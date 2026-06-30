@@ -11,8 +11,10 @@ public class WebCorsConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/api/**")
-                .allowedOrigins("https://localhost:3100")
-                .allowedMethods("POST", "OPTIONS")
+                .allowedOrigins(
+                        "https://localhost:3100", // Outlook add-in (client) — POST submissions
+                        "http://localhost:5173")  // React dashboard — read-only GETs
+                .allowedMethods("GET", "POST", "OPTIONS")
                 .allowedHeaders("Content-Type");
     }
 }
