@@ -1,6 +1,10 @@
 @import 'tailwindcss';
 
-
+/*
+ * PhishAid design tokens (§7). Defined in @theme so Tailwind generates the
+ * matching utilities, e.g. bg-primary, text-navy, bg-page, font-display,
+ * and the threat-level colors text-critical / bg-medium, etc.
+ */
 @theme {
   /* Brand */
   --color-primary: #5e4ce6; /* purple — primary/accent */
