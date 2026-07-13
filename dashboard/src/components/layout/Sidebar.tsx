@@ -1,6 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import type { LucideIcon } from 'lucide-react'
-import { LayoutDashboard, Mail, Link2, Paperclip, ClipboardList, ShieldCheck } from 'lucide-react'
+import { LayoutDashboard, Mail, Link2, Paperclip, ClipboardList } from 'lucide-react'
 
 interface NavItem {
   to: string
@@ -20,10 +20,8 @@ const NAV: NavItem[] = [
 export function Sidebar() {
   return (
     <aside className="flex w-60 shrink-0 flex-col border-r border-slate-200 bg-surface">
-      <div className="flex items-center gap-2 px-5 py-5">
-        <span className="rounded-lg bg-primary p-1.5 text-white">
-          <ShieldCheck size={20} />
-        </span>
+      <div className="flex flex-col items-center gap-2 px-5 py-5">
+        <img src="/unicredit-bulbank.png" alt="UniCredit Bulbank" className="w-full" />
         <span className="font-display text-lg font-extrabold text-navy">PhishAid</span>
       </div>
 
