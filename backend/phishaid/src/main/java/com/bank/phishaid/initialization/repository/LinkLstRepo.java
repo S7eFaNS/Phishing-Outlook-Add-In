@@ -41,6 +41,7 @@ class LinkLstRepo implements ILinkRepo {
         return toUuid(id);
     }
 
+    //create a joint table for phMail and linkLst with corresponding ids
     @Override
     public void CreateJunctionColumn(UUID phMailId, UUID linkLstId) {
         LinkRL link = new LinkRL();

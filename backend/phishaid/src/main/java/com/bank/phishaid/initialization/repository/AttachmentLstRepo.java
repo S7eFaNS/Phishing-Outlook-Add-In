@@ -24,6 +24,7 @@ class AttachmentLstRepo implements IAttachmentRepo {
         this.attachmentRLJpa = attachmentRLJpa;
     }
 
+    //creation of attachment object in db table, or update count if already persisted
     @Override
     public UUID Create(String attName) {
         em.createNativeQuery(
@@ -39,6 +40,7 @@ class AttachmentLstRepo implements IAttachmentRepo {
         return toUuid(id);
     }
 
+    //create a joint table for phMail and attLstId with corresponding ids
     @Override
     public void CreateJunctionColumn(UUID phMailId, UUID attLstId) {
         AttachmentRL link = new AttachmentRL();

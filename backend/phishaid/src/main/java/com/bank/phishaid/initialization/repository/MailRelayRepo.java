@@ -22,11 +22,13 @@ class MailRelayRepo implements IMailRelayRepo {
         this.junctionJpa = junctionJpa;
     }
 
+    //create mail relay hops
     @Override
     public MailRelayLst Create(MailRelayLst mailRelay) {
         return relayJpa.save(mailRelay);
     }
 
+    //create connection between mail relay hops and mailPath table
     @Override
     public MailRelayRL CreateJunctionColumn(MailPathLst mailPath, MailRelayLst mailRelay) {
         MailRelayRL link = new MailRelayRL();

@@ -70,6 +70,7 @@ class OrchestrationInitService implements IOrchestrationInitService {
         log.info("Initialisation complete for phMail {} (checkpoint drop + analysis scheduled after commit)", phMailId);
     }
 
+    //drop retry temp table if success and analysis takes over
     private void registerPostCommitHook(String hash, UUID phMailId) {
         TransactionSynchronizationManager.registerSynchronization(new TransactionSynchronization() {
             @Override

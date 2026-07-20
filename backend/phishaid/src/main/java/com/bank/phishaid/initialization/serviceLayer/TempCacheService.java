@@ -26,6 +26,7 @@ class TempCacheService implements ITempCacheService {
         this.orchestration = orchestration;
     }
 
+    //save email to temp table with raw email and hash
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void Save(String hash, String rawMail) {
@@ -36,6 +37,7 @@ class TempCacheService implements ITempCacheService {
         log.info("Saved tempCache checkpoint for hash {}", hash);
     }
 
+    //drop temp table after completion
     @Override
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void Drop(String hash) {

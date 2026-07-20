@@ -17,6 +17,7 @@ class MailPathRepo implements IMailPathRepo {
         this.jpa = jpa;
     }
 
+    //create new entry for header part with SPF, DKIM, DMARC and other relevant info from that table
     @Override
     public MailPathLst Create(MailPathLst mailPath) {
         return jpa.save(mailPath);

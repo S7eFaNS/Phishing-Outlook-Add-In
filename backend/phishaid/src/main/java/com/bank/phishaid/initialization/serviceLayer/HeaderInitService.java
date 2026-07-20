@@ -32,6 +32,7 @@ class HeaderInitService implements IHeaderInitService {
         this.mailRelayRepo = mailRelayRepo;
     }
 
+    //initialization of PhMail table in db
     @Override
     public PhMail InitPhMail(EmailHeaderDTO head) {
         PhMail phMail = new PhMail();
@@ -47,6 +48,7 @@ class HeaderInitService implements IHeaderInitService {
         return saved;
     }
 
+    //init MailPath in db
     @Override
     public MailPathLst InitMailPath(EmailHeaderDTO head, PhMail phMail) {
         MailPathLst mailPath = new MailPathLst();
@@ -61,6 +63,7 @@ class HeaderInitService implements IHeaderInitService {
         return saved;
     }
 
+    //init Mail Relay in db
     @Override
     public List<MailRelayLst> InitMailRelay(EmailHeaderDTO head, MailPathLst mailPath) {
         List<MailRelayLst> persisted = new ArrayList<>();

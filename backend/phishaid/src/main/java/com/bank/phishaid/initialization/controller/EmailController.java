@@ -20,7 +20,7 @@ class EmailController {
         this.orchestration = orchestration;
     }
 
-    //entry point for payload, @Valid if empty payload = 400, 500 on unexpected failures
+    //entry point for payload, start on whole process, @Valid if empty payload = 400, 500 on unexpected failures
 
     @PostMapping("/receive")
     public ResponseEntity<Void> GetReceiveRawData(@Valid @RequestBody ReceivePayload payload) {

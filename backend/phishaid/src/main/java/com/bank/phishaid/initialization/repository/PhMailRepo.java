@@ -17,6 +17,7 @@ class PhMailRepo implements IPhMailRepo {
         this.jpa = jpa;
     }
 
+    //create new phMail entry in db
     @Override
     public PhMail Create(PhMail phMail) {
         return jpa.save(phMail);

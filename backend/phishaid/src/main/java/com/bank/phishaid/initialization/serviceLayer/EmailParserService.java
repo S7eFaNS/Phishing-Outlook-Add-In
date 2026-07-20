@@ -43,6 +43,7 @@ public class EmailParserService implements IEmailParserService {
     private static final Pattern DKIM_PATTERN = Pattern.compile("\\bdkim=(\\w+)", Pattern.CASE_INSENSITIVE);
     private static final Pattern DMARC_PATTERN = Pattern.compile("\\bdmarc=(\\w+)", Pattern.CASE_INSENSITIVE);
 
+    //parse the received raw email
     @Override
     public EmailDTO Parse(String rawMail) {
         if (rawMail == null || rawMail.isBlank()) {
@@ -72,6 +73,7 @@ public class EmailParserService implements IEmailParserService {
         }
     }
 
+    //parse header only
     private EmailHeaderDTO parseHeader(MimeMessage message) throws MessagingException {
         EmailHeaderDTO head = new EmailHeaderDTO();
         head.setPhFrom(singleHeader(message, "From"));

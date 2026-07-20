@@ -39,6 +39,7 @@ class BodyInitService implements IBodyInitService {
         this.attachmentRepo = attachmentRepo;
     }
 
+    //extracts urls and attachments if available and structures it in the EmailDTO for the initialization part
     @Override
     public BodyExtraction ExtractUrlsAndAttachments(EmailDTO dto) {
         List<String> urls = extractUrls(dto.getBody());
@@ -65,6 +66,7 @@ class BodyInitService implements IBodyInitService {
         }
     }
 
+    //extract urls from body part of email
     private List<String> extractUrls(String body) {
         Set<String> distinct = new LinkedHashSet<>();
         if (body != null) {
@@ -79,6 +81,9 @@ class BodyInitService implements IBodyInitService {
         return new ArrayList<>(distinct);
     }
 
+    //hash attachments when retrieving them from email body
+    //attachment hashes are used to check the attachment in virustotal, VT has attachment hash checkup
+
     private List<String> hashAttachments(List<EmailAttachmentDTO> attachments) {
         Set<String> distinct = new LinkedHashSet<>();
         if (attachments != null) {
@@ -91,6 +96,7 @@ class BodyInitService implements IBodyInitService {
         return new ArrayList<>(distinct);
     }
 
+    //sha256 encoder of the attachments
     private static String sha256Hex(byte[] data) {
         try {
             byte[] digest = MessageDigest.getInstance("SHA-256").digest(data);
